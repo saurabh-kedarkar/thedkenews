@@ -49,7 +49,7 @@ function thedkanews_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'thedkanews' ),
+			'custom-menu' => esc_html__( 'Primary', 'thedkanews' ),
 		)
 	);
 
@@ -145,11 +145,17 @@ function thedkanews_scripts() {
 	wp_enqueue_style( 'header-footer-css', get_template_directory_uri().'/css/header-footer.css', array(), 	_S_VERSION );
 	wp_enqueue_style( 'home-css', get_template_directory_uri().'/css/home.css', array(), _S_VERSION );
 	wp_enqueue_style( 'style-css', get_template_directory_uri().'/style.css', array(), _S_VERSION );
+	wp_enqueue_style( 'blog-css', get_template_directory_uri().'/css/blog.css', array(), _S_VERSION );
 
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
 	wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.6.4.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'thedkanews-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'boostrap-navigation', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array(), _S_VERSION, true );
+	 wp_localize_script('custom', 'news_ajax_obj', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'ajax_nonce' => wp_create_nonce('load_more_news_nonce'),
+    ));
 wp_enqueue_script(
     'custom-swiper-init',
     get_template_directory_uri() . '/js/swiper-init.js', // Make sure this file exists
@@ -170,6 +176,9 @@ require get_template_directory() . '/inc/custom-header.php';
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/cpt-thedkanews.php';
+require get_template_directory() . '/inc/meta-boxes-thedkanews.php';
+require get_template_directory() . '/inc/custom_social_icon.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
@@ -187,4 +196,173 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title'  => 'Theme General Settings',
+        'menu_title'  => 'Theme Options',
+        'menu_slug'   => 'theme-general-settings',
+        'capability'  => 'edit_posts',
+        'redirect'    => false
+    ));
+}
+
+
+function ajax_load_more_news() {
+    check_ajax_referer('load_more_news_nonce', 'security');
+
+    $paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+    $args = array(
+        'post_type' => 'news',
+		'post_status' => 'publish',
+        'posts_per_page' => 8,
+        'paged' => $paged,
+    );
+
+    $news_query = new WP_Query($args);
+
+    ob_start();
+
+    if ($news_query->have_posts()) :
+        while ($news_query->have_posts()) : $news_query->the_post(); ?>
+            <div class="col-md-3">
+                <a href="#" class="common-card">
+                    <div class="common-card-img-container">
+                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" class="common-card-img" alt="">
+                        <?php
+                        $terms = get_the_terms(get_the_ID(), 'news_type');
+                        if ($terms && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<div class="tag tag-outline">' . esc_html($term->name) . '</div>';
+                                break;
+                            }
+                        }
+                        ?>
+                    </div>
+                    <div class="common-card-data">
+                        <h6 class="card-title base"><?php echo wp_trim_words(get_the_title(), 6); ?></h6>
+                        <div class="card-footer">
+                            <p class="source-name sm">by <?php the_author(); ?></p>
+                            <p class="date sm"><i class="fa-solid fa-calendar-days"></i> <?php echo get_the_date(); ?></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <?php endwhile;
+        wp_reset_postdata();
+
+        $html = ob_get_clean();
+        wp_send_json_success(array(
+            'html' => $html,
+            'max_page' => $news_query->max_num_pages
+        ));
+    else :
+        wp_send_json_error('No more posts');
+    endif;
+}
+
+add_action('wp_ajax_load_more_news', 'ajax_load_more_news');
+add_action('wp_ajax_nopriv_load_more_news', 'ajax_load_more_news');
+
+
+
+// Increase view count function 
+function set_post_view_count($post_id) { 
+    $key = 'post_views_count'; 
+    $views = (int) get_post_meta($post_id, $key, true); 
+    $views++; update_post_meta($post_id, $key, $views); 
+} 
+
+// Call this function on single post load 
+function track_post_views($post_id) { 
+    if (!is_single() || empty($post_id)) return; 
+    set_post_view_count($post_id); 
+} 
+add_action('wp_head', function () { 
+    if (is_single()) { 
+        global $post;
+         if (isset($post->ID)) { 
+            track_post_views($post->ID);
+        }
+    }
+});
+
+function allow_svg_uploads($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_uploads');
+
+
+function ajax_thedkanews_blog_posts() {
+	ob_start();
+
+	// Sanitize and fetch POST data
+	$pagination_data = isset($_POST['thedkanews_blog_posts_page_id']) ? intval($_POST['thedkanews_blog_posts_page_id']) : 1;
+	$cat_name = isset($_POST['thedkanews_blog_posts_cat_id']) ? intval($_POST['thedkanews_blog_posts_cat_id']) : '';
+
+	$args = array(
+		'post_type'      => 'news',
+		'post_status'    => 'publish',
+		'posts_per_page' => 3,
+		'paged'          => $pagination_data,
+	);
+
+	// Add taxonomy filter if category ID is provided
+	if (!empty($cat_name)) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'news_type',
+				'field'    => 'term_id',
+				'terms'    => $cat_name,
+			)
+		);
+	}
+
+	$arr_posts = new WP_Query($args);
+	?>
+
+	<?php if ($arr_posts->have_posts()) : ?>
+		<?php while ($arr_posts->have_posts()) : $arr_posts->the_post(); ?>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card">
+					<a href="<?php echo esc_url(get_permalink()); ?>" class="card-img">
+						<img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/images/default.jpg'); ?>" class="img-fluid" alt="<?php the_title_attribute(); ?>">
+					</a>
+					<div class="card-text position-relative">
+						<a href="<?php echo esc_url(get_permalink()); ?>">
+							<h6 class="card-title base"><?php echo esc_html(get_the_title()); ?></h6>
+						</a>
+						<p class="blog-date"><?php echo esc_html(get_the_date()); ?></p>
+						<?php if (get_the_excerpt()) : ?>
+							<p><?php echo esc_html(get_the_excerpt()); ?></p>
+						<?php endif; ?>
+						<a href="<?php echo esc_url(get_permalink()); ?>" class="button-primary">
+							<?php esc_html_e('Read MORE', 'thedkanews'); ?>
+						</a>
+					</div>
+				</div>
+			</div>
+		<?php endwhile; ?>
+	<?php else : ?>
+		<p><?php esc_html_e('No posts found.', 'thedkanews'); ?></p>
+	<?php endif; ?>
+
+	<?php
+	wp_reset_postdata();
+
+	$response = array(
+		'max_num_page'         => $arr_posts->max_num_pages,
+		'pagination_data_blog' => ob_get_clean(),
+	);
+
+	wp_send_json($response);
+}
+
+add_action('wp_ajax_thedkanews_blog_posts', 'ajax_thedkanews_blog_posts');
+add_action('wp_ajax_nopriv_thedkanews_blog_posts', 'ajax_thedkanews_blog_posts');
+
 

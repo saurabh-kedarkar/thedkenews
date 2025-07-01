@@ -1,0 +1,437 @@
+.banner-section {
+  height: 444px;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banner-section .container {
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.banner-section .heading-style-2 {
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+  text-transform: none;
+}
+
+/* button */
+.theme-btn-transprent,
+.theme-btn-transprent a {
+  color: var(--black);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  border: 1px solid var(--black);
+  padding: 15px 23px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.theme-btn-fill-black {
+  background: var(--black);
+  border: 1px solid var(--black);
+  color: var(--white);
+  z-index: 1;
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  z-index: 1;
+}
+.theme-btn-fill-white {
+  color: var(--black);
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  background: var(--white);
+  padding: 15px 31px;
+  border: 1px solid var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.theme-btn-transprent:hover,
+.theme-btn-fill-white:hover {
+  color: var(--white);
+}
+.theme-btn-fill-black:hover {
+  color: var(--black);
+}
+
+.theme-btn-transprent::before,
+.theme-btn-fill-black::before,
+.theme-btn-fill-white::before {
+  z-index: -1;
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+  transform: scale3d(0, 1, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 0.5px);
+  height: 100%;
+  content: "";
+  transform-origin: 100% 50%;
+}
+
+.theme-btn-fill-black::before {
+  background: var(--white);
+}
+.theme-btn-transprent::before,
+.theme-btn-fill-white::before {
+  background: var(--black);
+}
+.theme-btn-transprent::before {
+  width: 100%;
+}
+.theme-btn-transprent:hover:before,
+.theme-btn-fill-white:hover:before,
+.theme-btn-fill-black:hover:before {
+  transform: scale3d(1, 1, 1);
+  transform-origin: 0% 50%;
+}
+
+/* hover */
+.theme-btn-transprent:hover,
+.theme-btn-transprent:hover a {
+  color: var(--white);
+  background: var(--black);
+}
+.theme-btn-fill-black:hover {
+  color: var(--black);
+  background: var(--white);
+  border-color: var(--black);
+}
+.theme-btn-fill-white:hover {
+  color: var(--white);
+  background: var(--black);
+  border-color: var(--black);
+}
+
+/*  */
+.theme-btn-transprent:focus,
+.theme-btn-fill-black:focus,
+.theme-btn-fill-white:focus {
+  background: var(--black) !important;
+  color: var(--white) !important;
+}
+
+.theme-btn-transprent:focus {
+  border-color: black !important;
+}
+
+/******* Blog List page CSS - start ******/
+.section-blog-listing {
+  padding: 100px 0;
+}
+.section-blog-listing.comman-bg-pattern,
+.section-blog-detail.comman-bg-pattern {
+  background: url(./assets/images/bg-commen-pattern-left.png) no-repeat left top /
+      40% auto,
+    url(./assets/images/bg-commen-pattern-right.png) no-repeat right top / 30%
+      auto;
+}
+.section-blog-listing .col-12 {
+  margin: 0 0 24px;
+}
+.section-blog-listing .card {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #f7f7f7;
+  border: 0;
+  border-radius: 0;
+  transition: all ease-in-out 0.35s;
+}
+.section-blog-listing .card:hover {
+  filter: drop-shadow(0px 100px 133px rgba(0, 0, 0, 0.06))
+    drop-shadow(0px 50.625px 57.9797px rgba(0, 0, 0, 0.06))
+    drop-shadow(0px 20px 21.6125px rgba(0, 0, 0, 0.02))
+    drop-shadow(0px 4.375px 7.68906px rgba(0, 0, 0, 0.01));
+}
+.section-blog-listing .card .card-img {
+  height: 205px;
+  width: 100%;
+  display: block;
+  flex-shrink: 0;
+  transition: all ease-in-out 1s;
+  overflow: hidden;
+}
+.section-blog-listing .card .card-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.section-blog-listing .card .card-img:hover img {
+  transform: scale(1.1);
+}
+.section-blog-listing .card .card-text {
+  padding: 24px;
+  overflow: hidden;
+  height: 100%;
+}
+.section-blog-listing .card .card-text .heading-style-5 {
+  margin-bottom: 8px;
+  font-family: "Raleway", sans-serif;
+  text-align: start;
+  color: var(--black);
+  font-weight: 600;
+  transition: all ease-in-out 0.15s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-transform: none;
+}
+.section-blog-listing .card .card-text .heading-style-5:hover {
+  color: var(--secondary);
+}
+.section-blog-listing .card .card-text .blog-date {
+  margin-bottom: 16px;
+  color: var(--black);
+  text-align: start;
+  font-family: "Wix Madefor Display", sans-serif;
+  font-weight: 600;
+}
+.section-blog-listing .card .card-text p {
+  text-align: start;
+  margin-bottom: 24px;
+  color: #7a7a7a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.section-blog-listing .theme-btn-transprent {
+  transition: all ease-in-out 0.5s;
+}
+.section-blog-listing .d-flex .theme-btn-transprent {
+  font-size: 15px;
+  padding: 10px 25px;
+}
+.section-blog-listing .d-flex .theme-btn-transprent svg {
+  fill: var(--white);
+  right: 6px;
+}
+/******* Blog List page CSS - end ******/
+
+/******* Blog Details CSS - start ******/
+.back-to-blog {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  border-bottom: 1px solid var(--f0);
+}
+.back-to-blog img {
+  height: 22px;
+  width: 22px;
+}
+.back-to-blog-white {
+  color: var(--white);
+}
+.back-to-blog-white:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+.back-to-blog-black {
+  color: var(--black);
+}
+.back-to-blog-black:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+.back-to-blog-black img {
+  filter: brightness(0);
+}
+
+.banner-section .back-to-blog {
+  margin-bottom: 12px;
+}
+.banner-section h6.heading-style-6 {
+  max-width: 946px;
+  margin-inline: auto;
+  font-size: 40px;
+  line-height: 58px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.section-blog-detail {
+  padding: 80px 0;
+}
+.section-blog-detail figure {
+  height: 422px;
+  width: 100%;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+.section-blog-detail figure::before {
+  height: 100%;
+  bottom: -15px;
+  width: 89%;
+  position: absolute;
+  content: "";
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #a6773e;
+  z-index: -1;
+}
+.section-blog-detail figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.section-blog-detail h1,
+.section-blog-detail h2,
+.section-blog-detail h3,
+.section-blog-detail h4,
+.section-blog-detail h5,
+.section-blog-detail h6 {
+  text-align: left;
+  margin: 32px 0 12px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  color: var(--black);
+  font-family: "Raleway", sans-serif;
+}
+.section-blog-detail p {
+  margin: 0 0 12px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+  font-style: normal;
+  font-family: "Wix Madefor Display", sans-serif;
+}
+.section-blog-detail ul {
+  padding: 0;
+  margin: 0;
+}
+.section-blog-detail li {
+  padding: 0px 0px 0px 32px;
+  text-align: left;
+  margin: 0;
+  position: relative;
+  list-style: none;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+  font-style: normal;
+  color: #333333;
+  font-family: "Wix Madefor Display", sans-serif;
+}
+.section-blog-detail li:not(:last-child) {
+  margin-bottom: 8px;
+}
+.section-blog-detail li::before {
+  width: 22px;
+  height: 23px;
+  position: absolute;
+  content: "";
+  top: 2px;
+  left: 0;
+  background: url(../images/check-fill.svg) no-repeat center / cover;
+}
+.section-blog-detail .back-to-blog {
+  margin: 28px 0 0;
+}
+/******* Blog Details CSS - end ******/
+
+/* ===================================== media quiery  ===================================== */
+@media screen and (max-width: 1199px) {
+  .section-blog-listing .card .card-text {
+    padding: 18px;
+  }
+  .section-blog-listing .card .card-text .blog-date {
+    margin-bottom: 9px;
+  }
+  .section-blog-listing .card .card-text .heading-style-5 {
+    margin-bottom: 5px;
+  }
+  .section-blog-listing .card .card-text p {
+    margin-bottom: 20px;
+  }
+
+  /* details page */
+  .banner-section h6.heading-style-6 {
+    font-size: 30px;
+    line-height: 44px;
+  }
+}
+@media screen and (max-width: 767px) {
+  /* details page */
+  .banner-section h6.heading-style-6 {
+    font-size: 25px;
+    line-height: 36px;
+  }
+  .section-blog-detail h1,
+  .section-blog-detail h2,
+  .section-blog-detail h3,
+  .section-blog-detail h4,
+  .section-blog-detail h5,
+  .section-blog-detail h6 {
+    margin: 24px 0 12px;
+    font-size: 21px;
+    line-height: 24px;
+  }
+  .section-blog-detail li {
+    font-size: 17px;
+    line-height: 25px;
+    padding: 0px 0px 0px 28px;
+  }
+  .section-blog-detail p {
+    font-size: 17px;
+    line-height: 25px;
+  }
+}
+@media screen and (max-width: 575px) {
+  /* details page */
+  .banner-section h6.heading-style-6 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .section-blog-detail li {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .section-blog-detail p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

@@ -58,9 +58,8 @@
 								array(
 									'theme_location' => 'custom-menu',
 									'container_class' => 'menu-class',
-									'container' => 'nav', // Wrap it in <nav>
-									'container_class' => 'main-nav-container', // Custom class for nav
-    								'menu_class' => 'menu-class', // Custom class for ul
+									// 'container' => 'nav', // Wrap it in <nav>
+    								'menu_class' => 'menu', // Custom class for ul
     								'menu_id' => 'primary-menu', // ID for ul
             						'fallback_cb' => 'wp_page_menu'
 									)
