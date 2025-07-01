@@ -43,6 +43,7 @@ local-config.php
 *.tar
 *.tar.gz
 *.bak
+*.wpress
 
 # SFTP config
 *.sftp-config.json
