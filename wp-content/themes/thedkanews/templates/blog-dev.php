@@ -39,21 +39,26 @@ get_header();
          <?php if ($arr_posts->have_posts()) : ?>
             <?php while ($arr_posts->have_posts()) : $arr_posts->the_post(); ?>
                <div class="col-12 col-md-6 col-lg-4">
-                  <div class="card">
-                     <a href="<?php echo get_permalink(); ?>" class="card-img">
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="img-fluid" alt="blog Image">
-                     </a>
-                     <div class="card-text position-relative">
-                        <a href="<?php echo get_permalink(); ?>">
-                           <h3 class="heading-style-5"><?php echo get_the_title(); ?></h3>
-                        </a>
-                        <p class="blog-date"><?php echo get_the_date(); ?></p>
-                        <?php if (get_the_excerpt()) { ?>
-                           <p><?php the_excerpt(); ?></p>
-                        <?php } ?>
-                        <a href="<?php echo get_permalink(); ?>" class="theme-btn-transprent"><?php _e('Read MORE', 'thedkanews'); ?></a>
-                     </div>
-                  </div>
+                  <div class="common-card">
+					<a href="<?php echo esc_url(get_permalink()); ?>" class="common-card-img-container">
+						<img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/images/default.jpg'); ?>" class="common-card-img" alt="<?php the_title_attribute(); ?>">
+					</a>
+					<div class="common-card-data position-relative">
+						<a href="<?php echo esc_url(get_permalink()); ?>">
+							<h6 class="card-title base"><?php echo esc_html(get_the_title()); ?></h6>
+						</a>
+						<?php if (get_the_excerpt()) : ?>
+								<p class="card-data base"><?php echo esc_html(get_the_excerpt()); ?></p>
+							<?php endif; ?>
+                        <div class="card-footer">
+							<p class="blog-date sm"><?php echo esc_html(get_the_date()); ?></p>
+							
+						</div>
+						<a href="<?php echo esc_url(get_permalink()); ?>" class="button-primary">
+							<?php esc_html_e('Read MORE', 'thedkanews'); ?>
+						</a>
+					</div>
+				</div>
                </div>
          <?php endwhile;
          endif;
@@ -73,7 +78,7 @@ get_header();
          </div>
          <div class="d-flex align-items-center justify-content-center mt-1 mt-md-3 loadmore-btn">
             <!-- <a href="#" class="theme-btn-fill-black" id="more_blogs"> -->
-            <a href="#" class="blog-load-more" id="more_blogs">
+            <a href="#" class="blog-load-more button-primary" id="more_blogs">
                <?php _e('load More', 'thedkanews'); ?>
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16" style="display: none;">
                   <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path>

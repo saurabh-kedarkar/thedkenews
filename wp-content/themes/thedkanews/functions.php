@@ -328,18 +328,20 @@ function ajax_thedkanews_blog_posts() {
 	<?php if ($arr_posts->have_posts()) : ?>
 		<?php while ($arr_posts->have_posts()) : $arr_posts->the_post(); ?>
 			<div class="col-12 col-md-6 col-lg-4">
-				<div class="card">
-					<a href="<?php echo esc_url(get_permalink()); ?>" class="card-img">
-						<img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/images/default.jpg'); ?>" class="img-fluid" alt="<?php the_title_attribute(); ?>">
+				<div class="common-card">
+					<a href="<?php echo esc_url(get_permalink()); ?>" class="common-card-img-container">
+						<img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/images/default.jpg'); ?>" class="common-card-img" alt="<?php the_title_attribute(); ?>">
 					</a>
-					<div class="card-text position-relative">
+					<div class="common-card-data position-relative">
 						<a href="<?php echo esc_url(get_permalink()); ?>">
 							<h6 class="card-title base"><?php echo esc_html(get_the_title()); ?></h6>
 						</a>
-						<p class="blog-date"><?php echo esc_html(get_the_date()); ?></p>
 						<?php if (get_the_excerpt()) : ?>
-							<p><?php echo esc_html(get_the_excerpt()); ?></p>
-						<?php endif; ?>
+								<p class="card-data base"><?php echo esc_html(get_the_excerpt()); ?></p>
+							<?php endif; ?>
+                        <div class="card-footer">
+							<p class="blog-date sm"><?php echo esc_html(get_the_date()); ?></p>
+						</div>
 						<a href="<?php echo esc_url(get_permalink()); ?>" class="button-primary">
 							<?php esc_html_e('Read MORE', 'thedkanews'); ?>
 						</a>
@@ -361,7 +363,17 @@ function ajax_thedkanews_blog_posts() {
 
 	wp_send_json($response);
 }
-
+function custom_footer_widgets_init() {
+    register_sidebar( array(
+        'name'          => 'Footer Widget 1',
+        'id'            => 'footer-1',
+        'before_widget' => '<div class="footer-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ) );
+}
+add_action( 'widgets_init', 'custom_footer_widgets_init' );
 add_action('wp_ajax_thedkanews_blog_posts', 'ajax_thedkanews_blog_posts');
 add_action('wp_ajax_nopriv_thedkanews_blog_posts', 'ajax_thedkanews_blog_posts');
 

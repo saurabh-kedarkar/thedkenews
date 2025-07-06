@@ -1,7 +1,7 @@
 <?php
     /* Template Name: Home */
     get_header();
-    ?>  
+?>  
 <section class="hero-news container ">
     <div class="row ">
         <!-- Left Slider -->
@@ -57,7 +57,7 @@
         <!-- Right Side Cards -->
         <div class="col-lg-4 mt-4 mt-lg-0  right-side-tab-container">
             <h3 class="section-title">News Feed</h3>
-            <div class="d-flex flex-column gap-3">
+            <div class="d-flex flex-column gap-3 mt-2">
                 <a href="/" class="news-card small-card d-flex flex-column justify-content-end p-2 text-white  position-relative" >
                     <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" alt="Slide 1" class="banner-slider-img">
                     <span class="tag">Mobile</span>
@@ -164,7 +164,7 @@
 <section class="common-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <div class=" vertical-right-section">
                     <div>
                         <div class=" common-header">
@@ -191,7 +191,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <div class="d-flex flex-column gap-3">
+                                <div class="d-flex flex-column gap-3 mt-2">
                                     <a href="#" class="horizontal-card transition">
                                         <div class="left">
                                             <div class="tag">Technology</div>
@@ -226,7 +226,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ad-banner"></div>
+                    <!-- <div class="ad-banner"></div> -->
                     <div>
                         <div class=" common-header">
                             <h3 class="section-title">Trending News</h3>
@@ -295,7 +295,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div class="vertical-right-section">
                     <div class="">
                         <div class=" common-header">
@@ -414,7 +414,7 @@
             </div>
         </div>
         <div class="row common-outlet-container">
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-1.png" class="common-card-img" alt="">
@@ -429,7 +429,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -444,7 +444,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -459,7 +459,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -474,7 +474,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -489,7 +489,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -504,7 +504,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -519,7 +519,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <a href="#" class="common-card">
                     <div class="common-card-img-container">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/img-2.png" class="common-card-img" alt="">
@@ -540,7 +540,7 @@
 <section class="common-section ">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-9">
                <div class=" common-header">
                     <h3 class="section-title">Weekly Best News</h3>
                     <div class="">
@@ -604,7 +604,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div>
                         <div class=" common-header">
                             <h3 class="section-title">Popular Tech</h3>

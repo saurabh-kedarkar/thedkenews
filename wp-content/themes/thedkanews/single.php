@@ -28,8 +28,8 @@ get_header();
                             $post_url = get_permalink();
                             echo get_social_share_buttons($post_url);
                         ?>
-                <a href="<?php echo site_url('blog') ?>" class="back-to-blog back-to-blog-black">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/blog-arrow-icon.svg" alt="arrow icon">
+                <a href="<?php echo site_url('blog') ?>" class=" button-primary">
+                    <!-- <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/blog-arrow-icon.svg" alt="arrow icon"> -->
                     Back To Blog
                 </a>
             </div>

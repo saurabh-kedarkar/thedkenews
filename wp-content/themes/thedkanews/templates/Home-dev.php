@@ -62,7 +62,7 @@
         <!-- Right Side Cards -->
         <div class="col-lg-4 mt-4 mt-lg-0  right-side-tab-container">
             <h3 class="section-title">News Feed</h3>
-            <div class="d-flex flex-column gap-3">
+            <div class="d-flex flex-column gap-3 mt-2">
                 <?php
                     $args = array(
                         'post_type' => 'news',
@@ -165,7 +165,7 @@
 <section class="common-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <div class=" vertical-right-section">
                     <div>
                         <div class=" common-header">
@@ -217,7 +217,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <div class="d-flex flex-column gap-3">
+                                <div class="d-flex flex-column gap-3 mt-2">
                             <?php }else { 
                                 ?>
                                     <a href="<?php the_permalink(); ?>" class="horizontal-card transition">
@@ -246,7 +246,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="ad-banner"></div>
+                    <!-- <div class="ad-banner"></div> -->
                     <div>
                         <div class=" common-header">
                             <h3 class="section-title">Trending News</h3>
@@ -328,7 +328,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div class="vertical-right-section">
                     <div class="">
                         <div class=" common-header">
@@ -432,7 +432,7 @@
                     $max_page = $dummy_query->max_num_pages;
                     while ($dummy_query->have_posts()):
                         $dummy_query->the_post(); ?>
-                    <div class="col-md-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <a href="<?php the_permalink(); ?>" class="common-card">
                             <div class="common-card-img-container">
                                 <img src=<?php echo get_the_post_thumbnail_url(get_the_ID(), 'large'); ?> class="common-card-img" alt="">
@@ -472,7 +472,7 @@
 <section class="common-section ">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-9">
                <div class=" common-header">
                     <h3 class="section-title">Weekly Best News</h3>
                     <div class="">

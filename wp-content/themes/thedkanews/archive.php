@@ -47,21 +47,26 @@ $category_name = $category->name;
          <?php if ($arr_posts->have_posts()) : ?>
             <?php while ($arr_posts->have_posts()) : $arr_posts->the_post(); ?>
                <div class="col-12 col-md-6 col-lg-4">
-                  <div class="card">
-                     <a href="<?php echo get_permalink(); ?>" class="card-img">
-                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="img-fluid" alt="blog Image">
-                     </a>
-                     <div class="card-text position-relative">
-                        <a href="<?php echo get_permalink(); ?>">
-                           <h6 class="card-title base"><?php echo get_the_title(); ?></h6>
-                        </a>
-                        <p class="blog-date"><?php echo get_the_date(); ?></p>
-                        <?php if (get_the_excerpt()) { ?>
-                           <p><?php the_excerpt(); ?></p>
-                        <?php } ?>
-                        <a href="<?php echo get_permalink(); ?>" class="button-primary"><?php _e('Read MORE', 'thedkanews'); ?></a>
-                     </div>
-                  </div>
+                  <div class="common-card">
+					<a href="<?php echo esc_url(get_permalink()); ?>" class="common-card-img-container">
+						<img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: get_template_directory_uri() . '/images/default.jpg'); ?>" class="common-card-img" alt="<?php the_title_attribute(); ?>">
+					</a>
+					<div class="common-card-data position-relative">
+						<a href="<?php echo esc_url(get_permalink()); ?>">
+							<h6 class="card-title base"><?php echo esc_html(get_the_title()); ?></h6>
+						</a>
+						<?php if (get_the_excerpt()) : ?>
+								<p class="card-data base"><?php echo esc_html(get_the_excerpt()); ?></p>
+							<?php endif; ?>
+                        <div class="card-footer">
+							<p class="blog-date sm"><?php echo esc_html(get_the_date()); ?></p>
+							
+						</div>
+						<a href="<?php echo esc_url(get_permalink()); ?>" class="button-primary">
+							<?php esc_html_e('Read MORE', 'thedkanews'); ?>
+						</a>
+					</div>
+				</div>
                </div>
          <?php endwhile;
          endif;
