@@ -143,8 +143,8 @@ header.sticky .header-right-profile-wrap > a .profile-dropdown-icon {filter:brig
 .header-white .menu-class ul > li.current-menu-parent > a::after                 {filter:brightness(1);}
 
 /* ================================================== footer start ================================================ */
-footer                                                  {padding:16px;background-color: var(--white);}
-footer .container-footer                                {border-radius: 16px;overflow:hidden;background-color: var(--color-white);}
+footer                                                  {padding:16px;background-color: var(--color-border);}
+footer .container-footer                                {border-radius: 0px;overflow:hidden;background-color: var(--color-border);padding: 20px;}
 footer .top-footer                                      {padding:48px 48px 52px 48px; }
 footer .row .row                                        {gap:28px;}
 /* footer logo */
@@ -155,9 +155,9 @@ footer .footer-logo p                                   {font-size:20px;line-hei
 footer h6                                               {margin-bottom: 16px !important;font-size:20px;line-height: 34px;color:var(--white);}
 footer .footer-links li                                 {margin-bottom: 16px;}
 footer .footer-links li:last-child                      {margin-bottom: 0 !important;}
-footer a                                                {font-size:20px;line-height: 28p;color:var(--gray-01);position: relative;}
-footer a:before                                         {content: ""; position: absolute; left: 0; bottom: 0%; width: 0%; height: 2px; background: rgb(255, 255, 255); background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%); transition: 0.3s; }
-footer a:hover                                          {text-decoration: underline;}
+footer a                                                {font-size:20px;line-height: 28p;color:var(--color-black);position: relative;}
+footer a:before                                         {content: ""; position: absolute; left: 0; bottom: 0%; width: 0%; height: 2px; background: rgb(255, 255, 255); background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%); transition: 0.3s;font-weight: 600; }
+footer a:hover                                          {text-decoration: underline;color: var(--color-primary);}
 footer a:hover:before                                   {width:100%;}
 footer figure{margin-bottom:0 !important ;}
 
